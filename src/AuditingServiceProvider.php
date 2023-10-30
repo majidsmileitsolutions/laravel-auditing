@@ -7,6 +7,8 @@ use Illuminate\Support\ServiceProvider;
 use OwenIt\Auditing\Console\AuditDriverCommand;
 use OwenIt\Auditing\Console\AuditResolverCommand;
 use OwenIt\Auditing\Console\InstallCommand;
+use OwenIt\Auditing\Console\Rabbit\RabbitAuditConsumerCommand;
+use OwenIt\Auditing\Console\Rabbit\RabbitAuditPublisherCommand;
 use OwenIt\Auditing\Contracts\Auditor;
 
 class AuditingServiceProvider extends ServiceProvider implements DeferrableProvider
@@ -33,6 +35,8 @@ class AuditingServiceProvider extends ServiceProvider implements DeferrableProvi
             AuditDriverCommand::class,
             AuditResolverCommand::class,
             InstallCommand::class,
+            RabbitAuditPublisherCommand::class,
+            RabbitAuditConsumerCommand::class,
         ]);
 
         $this->app->singleton(Auditor::class, function ($app) {
