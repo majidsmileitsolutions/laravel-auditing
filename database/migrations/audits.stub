@@ -33,6 +33,9 @@ class CreateAuditsTable extends Migration
             $table->string('tags')->nullable();
             $table->timestamps();
 
+            $table->boolean('is_queued')->default(false)->after('tags');
+            $table->boolean('is_acked')->default(false)->after('is_queued');
+
             $table->index([$morphPrefix . '_id', $morphPrefix . '_type']);
         });
     }
