@@ -55,3 +55,99 @@ Please see the [contributing](http://laravel-auditing.com/docs/master/contributi
 
 ## License
 The **Laravel Auditing** package is open source software licensed under the [MIT LICENSE](LICENSE.md).
+
+# Smile IT Solutions Forked Edition
+
+### Description
+This fork has required `https://github.com/bschmitt/laravel-amqp` and uses rabbit as a message broker, publishes records
+from the `audits` table which have `false` value on the `is_queued` field, publishes them into the rabbit mq and sets 
+the `is_queue` value to `true`. Then the consumer gets those published messages and after pushing them to the
+elasticsearch, it sets the `is_acked` field on the `audits` table to `true`.
+
+### Publish the audit config file
+```bash
+php artisan vendor:publish --tag=config_audit
+```
+### Publish the audit table migration
+```bash
+php artisan vendor:publish --tag=migrations_audit
+```
+**Note:** Don't forget to run `php artisan migrate` so that the `audits` table will be migrated.
+### Publish the elasticsearch config file
+```bash
+php artisan vendor:publish --tag=config_elasticsearch
+```
+
+### Publish the rabbit mq config file
+The package does not support group name on publishing the assets, so here's how to publish the `amqp.php` config file.
+```bash
+php artisan vendor:publish
+```
+and then choose `Bschmitt\Amqp\AmqpServiceProvider` on the list. It will publish the `amqp.php` config file from the
+vendor.
+
+Here's the working values for the `amqp.php` config file:
+```php
+<?php
+
+return [
+    'use' => 'production',
+
+    'properties' => [
+        'production' => [
+            'host' => env('AMQP_HOST', 'rabbitmq'),
+            'port' => env('AMQP_PORT', '5672'),
+            'username' => env('AMQP_USERNAME'),
+            'password' => env('AMQP_PASSWORD'),
+            'vhost' => env('AMQP_VHOST', '/'),
+            'connect_options' => [],
+            'ssl_options' => [],
+
+            'exchange' => env('AMQP_EXCHANGE', 'amq.topic'),
+            'exchange_type' => env('AMQP_EXCHANGE_TYPE', 'topic'),
+            'exchange_passive' => false,
+            'exchange_durable' => true,
+            //'exchange_auto_delete' => true,
+            'exchange_internal' => false,
+            'exchange_nowait' => false,
+            'exchange_properties' => [],
+
+            'queue_force_declare' => false,
+            'queue_passive' => false,
+            //'queue_durable' => true,
+            'queue_exclusive' => false,
+            //'queue_auto_delete' => true,
+            'queue_nowait' => false,
+            //'queue_properties' => ['x-ha-policy' => ['S', 'all'], 'x-message-ttl' => ['I', '864000000'], 'x-queue-mode' => ['S', 'lazy']],
+
+            'consumer_tag' => '',
+            'consumer_no_local' => false,
+            'consumer_no_ack' => false,
+            'consumer_exclusive' => false,
+            'consumer_nowait' => false,
+            'timeout' => 0,
+            'persistent' => false,
+
+            'qos' => false,
+            'qos_prefetch_size' => 0,
+            'qos_prefetch_count' => 1,
+            'qos_a_global' => false
+        ],
+    ],
+];
+```
+
+### Setting the environment variables
+```dotenv
+AUDITING_ENABLED=true
+
+AMQP_HOST=rabbitmq
+AMQP_PORT=5672
+AMQP_USERNAME=
+AMQP_PASSWORD=
+AMQP_VHOST=/
+AMQP_EXCHANGE=amq.topic
+AMQP_EXCHANGE_TYPE=topic
+
+ELASTIC_HOST=http://elasticsearch:9200
+```
