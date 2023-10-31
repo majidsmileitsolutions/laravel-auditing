@@ -64,6 +64,11 @@ from the `audits` table which have `false` value on the `is_queued` field, publi
 the `is_queue` value to `true`. Then the consumer gets those published messages and after pushing them to the
 elasticsearch, it sets the `is_acked` field on the `audits` table to `true`.
 
+### Installation
+```bash
+composer require majidsmileitsolutions/laravel-auditing
+```
+
 ### Publish the audit config file
 ```bash
 php artisan vendor:publish --tag=config_audit
