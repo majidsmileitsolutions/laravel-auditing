@@ -22,7 +22,7 @@ class RabbitAuditConsumerCommand extends BaseCommand
     {
         parent::__construct();
         $this->audit = $audit;
-        $this->queue = config('amqp.audit_queue');
+        $this->queue = config('amqp.audit_queue', 'audit_queue');
         $this->elasticIndex = config('elasticsearch.audits_index');
     }
 

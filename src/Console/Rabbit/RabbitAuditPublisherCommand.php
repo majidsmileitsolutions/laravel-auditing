@@ -19,7 +19,7 @@ class RabbitAuditPublisherCommand extends BaseCommand
     {
         parent::__construct();
         $this->audit = $audit;
-        $this->queue = config('amqp.audit_queue');
+        $this->queue = config('amqp.audit_queue', 'audit_queue');
     }
 
     /**
