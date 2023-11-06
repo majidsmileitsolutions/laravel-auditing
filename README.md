@@ -65,6 +65,17 @@ the `is_queue` value to `true`. Then the consumer gets those published messages 
 elasticsearch, it sets the `is_acked` field on the `audits` table to `true`.
 
 ### Installation
+Add the following lines at the end of the `composer.json` file of your project:
+```json
+"repositories": [
+        {
+            "name": "majidsmileitsolutions/laravel-auditing",
+            "type": "vcs",
+            "url": "git@github.com:majidsmileitsolutions/laravel-auditing.git"
+        }
+    ]
+```
+Then install the package using the following command:
 ```bash
 composer require majidsmileitsolutions/laravel-auditing
 ```
