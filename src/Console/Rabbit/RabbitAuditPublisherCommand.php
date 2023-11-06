@@ -5,7 +5,6 @@ namespace OwenIt\Auditing\Console\Rabbit;
 use Bschmitt\Amqp\Facades\Amqp;
 use Exception;
 use OwenIt\Auditing\Console\BaseCommand;
-use OwenIt\Auditing\Constants\RabbitQueues;
 use OwenIt\Auditing\Models\Audit;
 use Symfony\Component\Console\Command\Command as SymfonyCommand;
 
