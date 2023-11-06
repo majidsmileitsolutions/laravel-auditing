@@ -7,8 +7,6 @@ use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use OwenIt\Auditing\Console\BaseCommand;
-use OwenIt\Auditing\Constants\ElasticsearchIndices;
-use OwenIt\Auditing\Constants\RabbitQueues;
 use OwenIt\Auditing\Models\Audit;
 use Symfony\Component\Console\Command\Command as SymfonyCommand;
 
@@ -24,8 +22,8 @@ class RabbitAuditConsumerCommand extends BaseCommand
     {
         parent::__construct();
         $this->audit = $audit;
-        $this->queue = RabbitQueues::AUDITS_RABBIT_QUEUE;
-        $this->elasticIndex = ElasticsearchIndices::AUDITS;
+        $this->queue = config('amqp.audit_queue');
+        $this->elasticIndex = config('elasticsearch.audits_index');
     }
 
     /**
