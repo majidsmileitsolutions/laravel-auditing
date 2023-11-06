@@ -2,16 +2,17 @@
 
 namespace OwenIt\Auditing\Console\Rabbit;
 
-use OwenIt\Auditing\Constants\RabbitQueues;
 use Bschmitt\Amqp\Facades\Amqp;
 use Exception;
 use OwenIt\Auditing\Console\BaseCommand;
+use OwenIt\Auditing\Constants\RabbitQueues;
 use OwenIt\Auditing\Models\Audit;
 use Symfony\Component\Console\Command\Command as SymfonyCommand;
 
 class RabbitAuditPublisherCommand extends BaseCommand
 {
     private string $queue;
+
     private Audit $audit;
 
     public function __construct(Audit $audit)
@@ -67,7 +68,7 @@ class RabbitAuditPublisherCommand extends BaseCommand
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function rules(): array
     {

@@ -2,20 +2,22 @@
 
 namespace OwenIt\Auditing\Console\Rabbit;
 
-use OwenIt\Auditing\Console\BaseCommand;
-use OwenIt\Auditing\Constants\ElasticsearchIndices;
-use OwenIt\Auditing\Constants\RabbitQueues;
-use OwenIt\Auditing\Models\Audit;
 use Bschmitt\Amqp\Facades\Amqp;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
+use OwenIt\Auditing\Console\BaseCommand;
+use OwenIt\Auditing\Constants\ElasticsearchIndices;
+use OwenIt\Auditing\Constants\RabbitQueues;
+use OwenIt\Auditing\Models\Audit;
 use Symfony\Component\Console\Command\Command as SymfonyCommand;
 
 class RabbitAuditConsumerCommand extends BaseCommand
 {
     private Audit $audit;
+
     private string $queue;
+
     private string $elasticIndex;
 
     public function __construct(Audit $audit)
@@ -51,7 +53,7 @@ class RabbitAuditConsumerCommand extends BaseCommand
                 DB::beginTransaction();
                 $auditArray['is_queued'] = true;
                 $auditArray['is_acked'] = true;
-                Http::post(config('elasticsearch.base_url') . "/$this->elasticIndex/_doc", $auditArray);
+                Http::post(config('elasticsearch.base_url')."/$this->elasticIndex/_doc", $auditArray);
                 $resolver->acknowledge($message);
                 $this->audit->query()->where('id', $auditArray['id'])->update([
                     'is_acked' => true,

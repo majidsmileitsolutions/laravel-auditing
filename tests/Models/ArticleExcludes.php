@@ -18,7 +18,7 @@ class ArticleExcludes extends Model implements Auditable
      */
     protected $casts = [
         'reviewed' => 'bool',
-        'config'   => 'json'
+        'config' => 'json',
     ];
 
     public $auditExclude = ['title'];
@@ -40,7 +40,6 @@ class ArticleExcludes extends Model implements Auditable
         'reviewed',
     ];
 
-
     public function __construct(array $attributes = [])
     {
         if (class_exists(\Illuminate\Database\Eloquent\Casts\AsArrayObject::class)) {
@@ -51,10 +50,6 @@ class ArticleExcludes extends Model implements Auditable
 
     /**
      * Uppercase Title accessor.
-     *
-     * @param string $value
-     *
-     * @return string
      */
     public function getTitleAttribute(string $value): string
     {

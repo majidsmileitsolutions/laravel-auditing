@@ -25,8 +25,8 @@ class Audit extends Model implements \OwenIt\Auditing\Contracts\Audit
      * {@inheritdoc}
      */
     protected $casts = [
-        'old_values'   => 'json',
-        'new_values'   => 'json',
+        'old_values' => 'json',
+        'new_values' => 'json',
         'created_at' => 'datetime:Y-m-d H:i:s',
         'updated_at' => 'datetime:Y-m-d H:i:s',
         // Note: Please do not add 'auditable_id' in here, as it will break non-integer PK models

@@ -37,15 +37,12 @@ interface Audit
 
     /**
      * Audit data resolver.
-     *
-     * @return array
      */
     public function resolveData(): array;
 
     /**
      * Get an Audit data value.
      *
-     * @param string $key
      *
      * @return mixed
      */
@@ -54,9 +51,6 @@ interface Audit
     /**
      * Get the Audit metadata.
      *
-     * @param bool $json
-     * @param int  $options
-     * @param int  $depth
      *
      * @return array|string
      */
@@ -65,9 +59,6 @@ interface Audit
     /**
      * Get the Auditable modified attributes.
      *
-     * @param bool $json
-     * @param int  $options
-     * @param int  $depth
      *
      * @return array|string
      */
