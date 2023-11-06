@@ -64,6 +64,10 @@ class AuditingServiceProvider extends ServiceProvider implements DeferrableProvi
             ], 'config_elasticsearch');
 
             $this->publishes([
+                __DIR__.'/../config/amqp.php' => base_path('config/amqp.php'),
+            ], 'config_amqp');
+
+            $this->publishes([
                 __DIR__ . '/../src/Console/Rabbit/RabbitAuditPublisherCommand.php' => base_path('app/Console/Commands/Rabbit/RabbitAuditPublisherCommand.php'),
             ], 'rabbit_publisher_command');
 
