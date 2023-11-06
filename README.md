@@ -108,11 +108,13 @@ php artisan vendor:publish --tag=config_elasticsearch
 ```bash
 php artisan vendor:publish --tag=rabbit_publisher_command
 ```
+**Note:** Don't forget to resolve the namespace.
 
 ### Publish the consumer command
 ```bash
 php artisan vendor:publish --tag=rabbit_consumer_command
 ```
+**Note:** Don't forget to resolve the namespace.
 
 ### Publish the rabbit mq config file
 The package does not support group name on publishing the assets, so here's how to publish the `amqp.php` config file.
