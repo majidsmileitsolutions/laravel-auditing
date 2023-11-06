@@ -75,6 +75,16 @@ Add the following lines at the end of the `composer.json` file of your project:
         }
     ]
 ```
+
+Then add the token on the `auth.json` file of your project based on [this link](https://github.com/settings/tokens/new) and [this link](https://getcomposer.org/doc/articles/authentication-for-private-packages.md#github-oauth):
+```json
+{
+    "github-oauth": {
+        "github.com": "token"
+    }
+}
+```
+
 Then install the package using the following command:
 ```bash
 composer require majidsmileitsolutions/laravel-auditing
