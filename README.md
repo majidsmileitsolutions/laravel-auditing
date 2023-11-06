@@ -96,6 +96,8 @@ Here's the working values for the `amqp.php` config file:
 <?php
 
 return [
+    'audit_queue' => env('APP_NAME').'_'.env('APP_ENV').'_audit_queue',
+
     'use' => 'production',
 
     'properties' => [
@@ -141,6 +143,8 @@ return [
     ],
 ];
 ```
+
+**Note:** We have added the `audit_queue` key to this config file.
 
 ### Setting the environment variables
 ```dotenv
