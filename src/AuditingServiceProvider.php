@@ -63,6 +63,14 @@ class AuditingServiceProvider extends ServiceProvider implements DeferrableProvi
                 __DIR__.'/../config/elasticsearch.php' => base_path('config/elasticsearch.php'),
             ], 'config_elasticsearch');
 
+            $this->publishes([
+                __DIR__ . '/../src/Console/Rabbit/RabbitAuditPublisherCommand.php' => base_path('app/Console/Commands/Rabbit/RabbitAuditPublisherCommand.php'),
+            ], 'rabbit_publisher_command');
+
+            $this->publishes([
+                __DIR__ . '/../src/Console/Rabbit/RabbitAuditConsumerCommand.php' => base_path('app/Console/Commands/Rabbit/RabbitAuditConsumerCommand.php'),
+            ], 'rabbit_consumer_command');
+
             if (! class_exists('CreateAuditsTable')) {
                 $this->publishes([
                     __DIR__.'/../database/migrations/audits.stub' => database_path(
