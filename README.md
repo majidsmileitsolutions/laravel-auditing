@@ -104,6 +104,11 @@ php artisan vendor:publish --tag=migrations_audit
 php artisan vendor:publish --tag=config_elasticsearch
 ```
 
+### Publish the Audit model
+```bash
+php artisan vendor:publish --tag=audit_model
+```
+
 ### Publish the publisher command
 ```bash
 php artisan vendor:publish --tag=rabbit_publisher_command
@@ -136,3 +141,7 @@ AMQP_EXCHANGE_TYPE=topic
 
 ELASTIC_HOST=http://elasticsearch:9200
 ```
+
+### Scheduling the commands
+Then you need to add the commands to your scheduler, so that they do the work.
+You also need a command to [prune](https://laravel.com/docs/10.x/eloquent#pruning-models) the `audits` table (those records which have `is_queue=1` and `is_acked=1`).
