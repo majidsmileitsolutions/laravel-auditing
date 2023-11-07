@@ -68,12 +68,16 @@ class AuditingServiceProvider extends ServiceProvider implements DeferrableProvi
             ], 'config_amqp');
 
             $this->publishes([
-                __DIR__ . '/../src/Console/Rabbit/RabbitAuditPublisherCommand.php' => base_path('app/Console/Commands/Rabbit/RabbitAuditPublisherCommand.php'),
+                __DIR__.'/../src/Console/Rabbit/RabbitAuditPublisherCommand.php' => base_path('app/Console/Commands/Rabbit/RabbitAuditPublisherCommand.php'),
             ], 'rabbit_publisher_command');
 
             $this->publishes([
-                __DIR__ . '/../src/Console/Rabbit/RabbitAuditConsumerCommand.php' => base_path('app/Console/Commands/Rabbit/RabbitAuditConsumerCommand.php'),
+                __DIR__.'/../src/Console/Rabbit/RabbitAuditConsumerCommand.php' => base_path('app/Console/Commands/Rabbit/RabbitAuditConsumerCommand.php'),
             ], 'rabbit_consumer_command');
+
+            $this->publishes([
+                __DIR__.'/../src/Models/Audit.php' => base_path('app/Models/Audit.php')
+            ], 'audit_model');
 
             if (! class_exists('CreateAuditsTable')) {
                 $this->publishes([
