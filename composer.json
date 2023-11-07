@@ -17,7 +17,7 @@
         "revision",
         "tracking"
     ],
-    "homepage": "https://laravel-auditing.com",
+    "homepage": "https://github.com/majidsmileitsolutions/laravel-auditing#smile-it-solutions-forked-edition",
     "type": "package",
     "license": "MIT",
     "support": {
@@ -36,6 +36,10 @@
         {
             "name": "Morten D. Hansen",
             "email": "morten@visia.dk"
+        },
+        {
+            "name": "Majid Alaeinia",
+            "email": "alaeinia.majid@gmail.com"
         }
     ],
     "require": {
