@@ -31,10 +31,11 @@ class CreateAuditsTable extends Migration
             $table->ipAddress('ip_address')->nullable();
             $table->string('user_agent', 1023)->nullable();
             $table->string('tags')->nullable();
-            $table->timestamps();
 
-            $table->boolean('is_queued')->default(false)->after('tags');
-            $table->boolean('is_acked')->default(false)->after('is_queued');
+            $table->boolean('is_queued')->default(false);
+            $table->boolean('is_acked')->default(false);
+
+            $table->timestamps();
 
             $table->index([$morphPrefix . '_id', $morphPrefix . '_type']);
         });
