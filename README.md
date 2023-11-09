@@ -94,6 +94,9 @@ composer require majidsmileitsolutions/laravel-auditing
 ```bash
 php artisan vendor:publish --tag=config_audit
 ```
+
+**Note:** Please don't forget to add all your desired guards in `config/auth.php` -> `guards` keys on 
+the `config/audit.php` -> `guards`; Otherwise, the `user_type` and `user_id` in the `audits` table would be null.
 ### Publish the audit table migration
 ```bash
 php artisan vendor:publish --tag=migrations_audit
