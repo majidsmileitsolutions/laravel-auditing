@@ -26,7 +26,11 @@ return [
 
     'user' => [
         'morph_prefix' => 'user',
-        'guards' => array_keys(config('auth.guards')),
+        'guards' => [
+            'web',
+            'api',
+            //any other guards can be added here: like 'admin-api'
+        ],
         'resolver' => OwenIt\Auditing\Resolvers\UserResolver::class,
     ],
 
