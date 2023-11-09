@@ -13,7 +13,9 @@ return [
             'password' => env('AMQP_PASSWORD'),
             'vhost' => env('AMQP_VHOST', '/'),
             'connect_options' => [],
-            'ssl_options' => [],
+            'ssl_options' => [
+                 //'dsn' => 'amqps:' //Uncomment this line if you're using AWS Rabbit Service
+            ],
 
             'exchange' => env('AMQP_EXCHANGE', 'amq.topic'),
             'exchange_type' => env('AMQP_EXCHANGE_TYPE', 'topic'),
