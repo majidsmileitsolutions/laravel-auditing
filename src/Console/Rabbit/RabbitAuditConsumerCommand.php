@@ -3,6 +3,7 @@
 namespace OwenIt\Auditing\Console\Rabbit;
 
 use Bschmitt\Amqp\Facades\Amqp;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
@@ -57,6 +58,11 @@ class RabbitAuditConsumerCommand extends BaseCommand
                 DB::beginTransaction();
                 $auditArray['is_queued'] = true;
                 $auditArray['is_acked'] = true;
+                $now = now();
+                $auditArray['elastic_created_at'] = $now->format('Y-m-d H:i:s');
+                $auditArray['created_at_timestamp'] = Carbon::parse($auditArray['created_at'])->timestamp;
+                $auditArray['updated_at_timestamp'] = Carbon::parse($auditArray['updated_at'])->timestamp;
+                $auditArray['elastic_created_at_timestamp'] = $now->timestamp;
                 $elasticResponse = Http::post($this->elasticBaseUrl."/$this->elasticIndex/_doc", $auditArray);
                 if ($elasticResponse->status() !== Response::HTTP_CREATED) {
                     Log::error('failed_to_index_document', [
