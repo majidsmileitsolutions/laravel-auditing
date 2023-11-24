@@ -55,6 +55,7 @@ class RabbitAuditConsumerCommand extends BaseCommand
         try {
             Amqp::consume($this->queue, function ($message, $resolver) {
                 $auditArray = json_decode($message->body, true);
+                Log::info('starting_to_consume_audit', $auditArray);
                 DB::beginTransaction();
                 $auditArray['is_queued'] = true;
                 $auditArray['is_acked'] = true;
