@@ -6,6 +6,6 @@ use Illuminate\Support\Facades\Route;
 //     ->get('admin/audits/search', [AuditSearchController::class, 'index'])
 //     ->name('admin.audits.search');
 
-Route::get('admin/audits/search', function () {
+Route::get('tessssst', function () {
     echo 'hihihi';
 });
