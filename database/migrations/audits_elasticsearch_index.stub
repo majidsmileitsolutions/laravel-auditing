@@ -1,0 +1,28 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\Http;
+use Onion\External\Constants\ElasticIndices;
+
+class CreateAuditsElasticsearchIndex extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up(): void
+    {
+        Http::acceptJson()->put(config('elasticsearch.base_url') . '/' . config('elasticsearch.audits_index'), json_decode(file_get_contents(database_path() . '/mappings/audits_elasticsearch_mapping.json'), true));
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down(): void
+    {
+        Http::acceptJson()->delete(config('elasticsearch.base_url') . '/' . config('elasticsearch.audits_index'));
+    }
+}
