@@ -63,7 +63,7 @@ class RabbitAuditConsumerCommand extends BaseCommand
                 $auditArray['created_at_timestamp'] = Carbon::parse($auditArray['created_at'])->timestamp;
                 $auditArray['updated_at_timestamp'] = Carbon::parse($auditArray['updated_at'])->timestamp;
                 $auditArray['elastic_created_at_timestamp'] = $now->timestamp;
-                $elasticResponse = ElasticsearchClient::build(config('elasticsearch.username'), config('elasticsearch.password'))
+                $elasticResponse = ElasticsearchClient::build()
                                   ->post($this->elasticBaseUrl."/$this->elasticIndex/_doc", $auditArray);
                 if ($elasticResponse->status() !== Response::HTTP_CREATED) {
                     Log::error('failed_to_index_document', [

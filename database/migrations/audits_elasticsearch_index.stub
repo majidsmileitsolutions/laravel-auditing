@@ -14,7 +14,7 @@ class CreateAuditsElasticsearchIndex extends Migration
      */
     public function up(): void
     {
-        ElasticsearchClient::build(config('elasticsearch.username'), config('elasticsearch.password'))
+        ElasticsearchClient::build()
         ->put(config('elasticsearch.base_url') . '/' . config('elasticsearch.audits_index'), json_decode(file_get_contents(database_path() . '/migrations/mappings/audits_elasticsearch_mapping.json'), true));
     }
 
@@ -26,7 +26,7 @@ class CreateAuditsElasticsearchIndex extends Migration
      */
     public function down(): void
     {
-        ElasticsearchClient::build(config('elasticsearch.username'), config('elasticsearch.password'))
+        ElasticsearchClient::build()
         ->delete(config('elasticsearch.base_url') . '/' . config('elasticsearch.audits_index'));
     }
 }
