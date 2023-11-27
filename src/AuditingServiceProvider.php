@@ -81,7 +81,7 @@ class AuditingServiceProvider extends ServiceProvider implements DeferrableProvi
             ], 'audit_model');
 
             $this->publishes([
-                __DIR__.'/../database/migrations/mappings/audits_elasticsearch_mapping.json' => base_path('migrations/mappings/audits_elasticsearch_mapping.json')
+                __DIR__.'/../database/migrations/mappings/audits_elasticsearch_mapping.json' => database_path('migrations/mappings/audits_elasticsearch_mapping.json')
             ], 'audit_elasticsearch_mapping');
 
             if (! class_exists('CreateAuditsTable')) {
