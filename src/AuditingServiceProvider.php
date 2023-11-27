@@ -77,7 +77,7 @@ class AuditingServiceProvider extends ServiceProvider implements DeferrableProvi
             ], 'rabbit_consumer_command');
 
             $this->publishes([
-                __DIR__.'/../src/Models/Audit.php' => base_path('app/Models/Audit.php')
+                __DIR__.'/../src/Models/Audit.php' => base_path('app/Models/Audit.php'),
             ], 'audit_model');
 
             if (! class_exists('CreateAuditsTable')) {

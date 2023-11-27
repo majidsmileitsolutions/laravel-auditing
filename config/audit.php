@@ -5,9 +5,9 @@ use OwenIt\Auditing\Constants\EventTypes;
 
 return [
 
-     'enabled' => env('AUDITING_ENABLED', true),
+    'enabled' => env('AUDITING_ENABLED', true),
 
-     /*
+    /*
      |--------------------------------------------------------------------------
      | Audit Implementation
      |--------------------------------------------------------------------------
@@ -16,9 +16,9 @@ return [
      |
      */
 
-     'implementation' => OwenIt\Auditing\Models\Audit::class,
+    'implementation' => OwenIt\Auditing\Models\Audit::class,
 
-     /*
+    /*
      |--------------------------------------------------------------------------
      | User Morph prefix & Guards
      |--------------------------------------------------------------------------
@@ -27,17 +27,17 @@ return [
      |
      */
 
-     'user'      => [
-          'morph_prefix' => 'user',
-          'guards'       => [
-               'web',
-               'api',
-               //any other guards can be added here: like 'admin-api'
-          ],
-          'resolver'     => OwenIt\Auditing\Resolvers\UserResolver::class,
-     ],
+    'user' => [
+        'morph_prefix' => 'user',
+        'guards' => [
+            'web',
+            'api',
+            //any other guards can be added here: like 'admin-api'
+        ],
+        'resolver' => OwenIt\Auditing\Resolvers\UserResolver::class,
+    ],
 
-     /*
+    /*
      |--------------------------------------------------------------------------
      | Audit Resolvers
      |--------------------------------------------------------------------------
@@ -45,13 +45,13 @@ return [
      | Define the IP Address, User Agent and URL resolver implementations.
      |
      */
-     'resolvers' => [
-          'ip_address' => OwenIt\Auditing\Resolvers\IpAddressResolver::class,
-          'user_agent' => OwenIt\Auditing\Resolvers\UserAgentResolver::class,
-          'url'        => OwenIt\Auditing\Resolvers\UrlResolver::class,
-     ],
+    'resolvers' => [
+        'ip_address' => OwenIt\Auditing\Resolvers\IpAddressResolver::class,
+        'user_agent' => OwenIt\Auditing\Resolvers\UserAgentResolver::class,
+        'url' => OwenIt\Auditing\Resolvers\UrlResolver::class,
+    ],
 
-     /*
+    /*
      |--------------------------------------------------------------------------
      | Audit Events
      |--------------------------------------------------------------------------
@@ -60,14 +60,14 @@ return [
      |
      */
 
-     'events' => [
-          EventTypes::CREATED,
-          EventTypes::UPDATED,
-          EventTypes::DELETED,
-          EventTypes::RESTORED,
-     ],
+    'events' => [
+        EventTypes::CREATED,
+        EventTypes::UPDATED,
+        EventTypes::DELETED,
+        EventTypes::RESTORED,
+    ],
 
-     /*
+    /*
      |--------------------------------------------------------------------------
      | Strict Mode
      |--------------------------------------------------------------------------
@@ -76,9 +76,9 @@ return [
      |
      */
 
-     'strict' => false,
+    'strict' => false,
 
-     /*
+    /*
      |--------------------------------------------------------------------------
      | Global exclude
      |--------------------------------------------------------------------------
@@ -88,9 +88,9 @@ return [
      |
      */
 
-     'exclude' => [],
+    'exclude' => [],
 
-     /*
+    /*
      |--------------------------------------------------------------------------
      | Empty Values
      |--------------------------------------------------------------------------
@@ -105,12 +105,12 @@ return [
      |
      */
 
-     'empty_values'         => true,
-     'allowed_empty_values' => [
-          'retrieved',
-     ],
+    'empty_values' => true,
+    'allowed_empty_values' => [
+        'retrieved',
+    ],
 
-     /*
+    /*
      |--------------------------------------------------------------------------
      | Audit Timestamps
      |--------------------------------------------------------------------------
@@ -119,9 +119,9 @@ return [
      |
      */
 
-     'timestamps' => false,
+    'timestamps' => false,
 
-     /*
+    /*
      |--------------------------------------------------------------------------
      | Audit Threshold
      |--------------------------------------------------------------------------
@@ -131,9 +131,9 @@ return [
      |
      */
 
-     'threshold' => 0,
+    'threshold' => 0,
 
-     /*
+    /*
      |--------------------------------------------------------------------------
      | Audit Driver
      |--------------------------------------------------------------------------
@@ -142,9 +142,9 @@ return [
      |
      */
 
-     'driver' => 'database',
+    'driver' => 'database',
 
-     /*
+    /*
      |--------------------------------------------------------------------------
      | Audit Driver Configurations
      |--------------------------------------------------------------------------
@@ -153,14 +153,14 @@ return [
      |
      */
 
-     'drivers' => [
-          'database' => [
-               'table'      => 'audits',
-               'connection' => env('DB_CONNECTION'),
-          ],
-     ],
+    'drivers' => [
+        'database' => [
+            'table' => 'audits',
+            'connection' => env('DB_CONNECTION'),
+        ],
+    ],
 
-     /*
+    /*
      |--------------------------------------------------------------------------
      | Audit Console
      |--------------------------------------------------------------------------
@@ -169,9 +169,9 @@ return [
      |
      */
 
-     'console' => false,
+    'console' => false,
 
-     /*
+    /*
      |--------------------------------------------------------------------------
      | Middleware
      |--------------------------------------------------------------------------
@@ -180,9 +180,9 @@ return [
      |
      */
 
-     'search_middleware_name' => ['auth:admin-api'],
+    'search_middleware_name' => ['auth:admin-api'],
 
-     /*
+    /*
      |--------------------------------------------------------------------------
      | Permission
      |--------------------------------------------------------------------------
@@ -191,9 +191,9 @@ return [
      |
      */
 
-     'search_permission_name' => '', // ex. 'SEARCH_AUDITS'
+    'search_permission_name' => '', // ex. 'SEARCH_AUDITS'
 
-     /*
+    /*
      |--------------------------------------------------------------------------
      | Search Request Validation Considerations
      |--------------------------------------------------------------------------
@@ -202,23 +202,23 @@ return [
      |
      */
 
-     'search_request_validation_rules' => [
-          'model'     => ['nullable', 'string'/*, Rule::in([])*/],
-          'action'    => [
-               'nullable',
-               'array',
-               Rule::in([
-                         EventTypes::CREATED,
-                         EventTypes::UPDATED,
-                         EventTypes::DELETED,
-                         EventTypes::RESTORED,
-                    ]),
-          ],
-          'from_date' => ['nullable', 'date', 'date_format:Y-m-d'],
-          'to_date'   => ['nullable', 'date', 'date_format:Y-m-d'],
-          'field'     => ['nullable', 'string'],
-          'keyword'   => ['nullable', 'string'],
-     ],
+    'search_request_validation_rules' => [
+        'model' => ['nullable', 'string'/*, Rule::in([])*/],
+        'action' => [
+            'nullable',
+            'array',
+            Rule::in([
+                EventTypes::CREATED,
+                EventTypes::UPDATED,
+                EventTypes::DELETED,
+                EventTypes::RESTORED,
+            ]),
+        ],
+        'from_date' => ['nullable', 'date', 'date_format:Y-m-d'],
+        'to_date' => ['nullable', 'date', 'date_format:Y-m-d'],
+        'field' => ['nullable', 'string'],
+        'keyword' => ['nullable', 'string'],
+    ],
 
-     'search_request_validation_authorize' => true,
+    'search_request_validation_authorize' => true,
 ];
