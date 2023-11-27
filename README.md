@@ -107,6 +107,16 @@ php artisan vendor:publish --tag=migrations_audit
 php artisan vendor:publish --tag=config_elasticsearch
 ```
 
+### Publish the elasticsearch audits index mapping
+```bash
+php artisan vendor:publish --tag=audit_elasticsearch_mapping
+```
+
+### Publish the elasticsearch audits index migration creation
+```bash
+php artisan vendor:publish --tag=migrations_audit_elastic_index
+```
+
 ### Publish the Audit model
 ```bash
 php artisan vendor:publish --tag=audit_model
