@@ -1,0 +1,77 @@
+{
+    "mappings": {
+        "properties": {
+            "id": {
+                "type": "long"
+            },
+            "auditable_id": {
+                "type": "long"
+            },
+            "auditable_type": {
+                "type": "text",
+                "fields": {
+                    "keyword": {
+                        "type": "keyword",
+                        "ignore_above": 256
+                    }
+                }
+            },
+            "event": {
+                "type": "keyword"
+            },
+            "ip_address": {
+                "type": "keyword"
+            },
+            "is_acked": {
+                "type": "boolean"
+            },
+            "is_queued": {
+                "type": "boolean"
+            },
+            "new_values": {
+                "type": "object"
+            },
+            "old_values": {
+                "type": "object"
+            },
+            "url": {
+                "type": "text",
+                "fields": {
+                    "keyword": {
+                        "type": "keyword",
+                        "ignore_above": 256
+                    }
+                }
+            },
+            "user_agent": {
+                "type": "text",
+                "fields": {
+                    "keyword": {
+                        "type": "keyword",
+                        "ignore_above": 256
+                    }
+                }
+            },
+            "user_id": {
+                "type": "long"
+            },
+            "user_type": {
+                "type": "text",
+                "fields": {
+                    "keyword": {
+                        "type": "keyword",
+                        "ignore_above": 256
+                    }
+                }
+            },
+            "created_at": {
+                "type": "date",
+                "format": "yyyy-MM-dd HH:mm:ss.SSSSSS"
+            },
+            "updated_at": {
+                "type": "date",
+                "format": "yyyy-MM-dd HH:mm:ss.SSSSSS"
+            }
+        }
+    }
+}
