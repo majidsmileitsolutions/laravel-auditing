@@ -5,5 +5,5 @@ return [
     'audits_index' => env('APP_NAME', 'your_app_name').'_'.env('APP_ENV', 'your_app_env').'_audits',
     'username' => env('ELASTIC_USERNAME', 'sample_username'),
     'password' => env('ELASTIC_PASSWORD', 'sample_password'),
-    'has_credentials' => false,
+    'has_credentials' => true,
 ];

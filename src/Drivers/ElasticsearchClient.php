@@ -11,12 +11,12 @@ class ElasticsearchClient
     /**
      * @throws Exception
      */
-    public static function build(): PendingRequest
+    public static function build(string $username = null, string $password = null): PendingRequest
     {
         try {
             return config('elasticsearch.has_credentials')
-                ? Http::acceptJson()
-                : Http::withBasicAuth(config('elasticsearch.username'), config('elasticsearch.password'));
+                ? Http::withBasicAuth($username, $password)
+                : Http::acceptJson();
         } catch (Exception $exception) {
             throw new Exception('failed_to_connect_to_elasticsearch: ' . $exception->getMessage());
         }
