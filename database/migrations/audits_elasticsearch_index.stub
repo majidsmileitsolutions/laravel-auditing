@@ -2,7 +2,6 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Facades\Http;
-use Onion\External\Constants\ElasticIndices;
 
 class CreateAuditsElasticsearchIndex extends Migration
 {
