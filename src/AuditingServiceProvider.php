@@ -87,7 +87,7 @@ class AuditingServiceProvider extends ServiceProvider implements DeferrableProvi
             if (! class_exists('CreateAuditsTable')) {
                 $this->publishes([
                     __DIR__.'/../database/migrations/audits_elasticsearch_index.stub' => database_path(
-                        sprintf('migrations/%s_create_audits_elastic_index.php', date('Y_m_d_His'))
+                        sprintf('migrations/%s_create_audits_elasticsearch_index.php', date('Y_m_d_His'))
                     ),
                 ], 'migrations_audit_elastic_index');
             }
