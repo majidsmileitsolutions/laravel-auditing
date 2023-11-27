@@ -7,9 +7,9 @@ use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use OwenIt\Auditing\Console\BaseCommand;
+use OwenIt\Auditing\Drivers\ElasticsearchClient;
 use OwenIt\Auditing\Models\Audit;
 use RuntimeException;
 use Symfony\Component\Console\Command\Command as SymfonyCommand;
@@ -63,7 +63,7 @@ class RabbitAuditConsumerCommand extends BaseCommand
                 $auditArray['created_at_timestamp'] = Carbon::parse($auditArray['created_at'])->timestamp;
                 $auditArray['updated_at_timestamp'] = Carbon::parse($auditArray['updated_at'])->timestamp;
                 $auditArray['elastic_created_at_timestamp'] = $now->timestamp;
-                $elasticResponse = Http::post($this->elasticBaseUrl."/$this->elasticIndex/_doc", $auditArray);
+                $elasticResponse = ElasticsearchClient::build()->post($this->elasticBaseUrl."/$this->elasticIndex/_doc", $auditArray);
                 if ($elasticResponse->status() !== Response::HTTP_CREATED) {
                     Log::error('failed_to_index_document', [
                          'status_code' => $elasticResponse->status(),

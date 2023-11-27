@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Facades\Http;
+use OwenIt\Auditing\Drivers\ElasticsearchClient;
 
 class CreateAuditsElasticsearchIndex extends Migration
 {
@@ -12,7 +13,7 @@ class CreateAuditsElasticsearchIndex extends Migration
      */
     public function up(): void
     {
-        Http::acceptJson()->put(config('elasticsearch.base_url') . '/' . config('elasticsearch.audits_index'), json_decode(file_get_contents(database_path() . '/migrations/mappings/audits_elasticsearch_mapping.json'), true));
+        ElasticsearchClient::build()->put(config('elasticsearch.base_url') . '/' . config('elasticsearch.audits_index'), json_decode(file_get_contents(database_path() . '/migrations/mappings/audits_elasticsearch_mapping.json'), true));
     }
 
     /**
