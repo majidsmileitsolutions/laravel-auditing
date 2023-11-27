@@ -66,11 +66,24 @@
             },
             "created_at": {
                 "type": "date",
-                "format": "yyyy-MM-dd HH:mm:ss.SSSSSS"
+                "format": "yyyy-MM-dd HH:mm:ss"
             },
             "updated_at": {
                 "type": "date",
-                "format": "yyyy-MM-dd HH:mm:ss.SSSSSS"
+                "format": "yyyy-MM-dd HH:mm:ss"
+            },
+            "elastic_created_at": {
+                "type": "date",
+                "format": "yyyy-MM-dd HH:mm:ss"
+            },
+            "created_at_timestamp": {
+                "type": "long"
+            },
+            "updated_at_timestamp": {
+                "type": "long"
+            },
+            "elastic_created_at_timestamp": {
+                "type": "long"
             }
         }
     }
