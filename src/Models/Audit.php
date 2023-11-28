@@ -2,7 +2,9 @@
 
 namespace OwenIt\Auditing\Models;
 
+use Illuminate\Database\Eloquent\MassPrunable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 /**
  * @property string $tags
@@ -15,6 +17,7 @@ use Illuminate\Database\Eloquent\Model;
 class Audit extends Model implements \OwenIt\Auditing\Contracts\Audit
 {
     use \OwenIt\Auditing\Audit;
+    use MassPrunable;
 
     /**
      * {@inheritdoc}
@@ -35,5 +38,13 @@ class Audit extends Model implements \OwenIt\Auditing\Contracts\Audit
     public function getSerializedDate($date)
     {
         return $this->serializeDate($date);
+    }
+
+    /**
+     * Get the prunable model query.
+     */
+    public function prunable(): Builder
+    {
+        return static::where('is_queued', 1)->where('is_acked', 1)->where('created_at', '<=', now()->subWeek());
     }
 }
