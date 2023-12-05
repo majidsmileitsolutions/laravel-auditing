@@ -22,7 +22,6 @@ class AuditingServiceProvider extends ServiceProvider implements DeferrableProvi
     {
         $this->registerPublishing();
         $this->mergeConfigFrom(__DIR__.'/../config/audit.php', 'audit');
-        $this->loadRoutesFrom(__DIR__.'/Routes/web.php');
     }
 
     /**
