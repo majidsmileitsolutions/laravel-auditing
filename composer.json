@@ -48,7 +48,8 @@
         "illuminate/database": "^7.0|^8.0|^9.0|^10.0",
         "illuminate/filesystem": "^7.0|^8.0|^9.0|^10.0",
         "ext-json": "*",
-        "bschmitt/laravel-amqp": "^2.1"
+        "bschmitt/laravel-amqp": "^2.1",
+        "elasticsearch/elasticsearch": "^8.11"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.0",
@@ -80,5 +81,10 @@
         }
     },
     "minimum-stability": "dev",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
+    }
 }
