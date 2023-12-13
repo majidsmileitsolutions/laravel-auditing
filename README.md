@@ -153,6 +153,8 @@ AMQP_EXCHANGE=amq.topic
 AMQP_EXCHANGE_TYPE=topic
 
 ELASTIC_HOST=http://elasticsearch:9200
+ELASTIC_USERNAME=
+ELASTIC_PASSWORD=
 ```
 
 ### Scheduling the commands
